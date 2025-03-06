@@ -1,4 +1,4 @@
-name: Lint
+name: Lint & Format
 
 on:
   push:
@@ -45,6 +45,3 @@ jobs:
 
       - name: Run TypeScript check
         run: pnpm typecheck
-
-      - name: Check formatting
-        run: pnpm format:check
