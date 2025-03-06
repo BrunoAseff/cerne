@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="bg-[#E8EAEC]">
-        <Nav />
-        {children}
+        <TooltipProvider>
+          <Nav />
+          {children}
+        </TooltipProvider>
       </body>
     </html>
   );
