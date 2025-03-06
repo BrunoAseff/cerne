@@ -3,7 +3,7 @@ import Preview from "@/components/Preview";
 
 export default function HomePage() {
   return (
-    <main className="mx-16 mb-12 mt-16 flex h-screen justify-center">
+    <main className="mx-16 mb-12 mt-16 flex h-screen justify-center gap-6">
       <Form />
       <Preview />
     </main>
