@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="bg-[#E8EAEC]">
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <Nav />
           {children}
         </TooltipProvider>
