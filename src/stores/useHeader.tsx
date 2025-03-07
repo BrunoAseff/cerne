@@ -27,20 +27,20 @@ type HeaderStore = {
 const defaultFields: HeaderFields = {
   studentName: {
     id: "studentName",
-    label: "Nome do estudante",
-    enabled: false,
+    label: "Estudante",
+    enabled: true,
   },
   teacherName: {
     id: "teacherName",
-    label: "Nome do professor",
-    enabled: false,
+    label: "Professor",
+    enabled: true,
   },
-  schoolName: { id: "schoolName", label: "School Name", enabled: false },
-  date: { id: "date", label: "Data", enabled: false },
-  class: { id: "class", label: "Turma", enabled: false },
-  grade: { id: "grade", label: "Série/ano", enabled: false },
-  subject: { id: "subject", label: "Matéria/Disciplina", enabled: false },
-  score: { id: "score", label: "Nota", enabled: false },
+  schoolName: { id: "schoolName", label: "Escola", enabled: true },
+  date: { id: "date", label: "Data", enabled: true },
+  class: { id: "class", label: "Turma", enabled: true },
+  grade: { id: "grade", label: "Série", enabled: true },
+  subject: { id: "subject", label: "Disciplina", enabled: true },
+  score: { id: "score", label: "Nota", enabled: true },
 };
 
 export const useHeader = create<HeaderStore>((set) => ({

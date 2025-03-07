@@ -48,7 +48,7 @@ export const TitleInput = React.forwardRef<HTMLDivElement, MinimalTiptapProps>(
         name="editor"
         ref={ref}
         className={cn(
-          "flex h-auto min-h-28 max-w-[50%] flex-col rounded-md border border-input shadow-sm focus-within:border-primary",
+          "flex h-auto min-h-28 w-full flex-col rounded-md border border-input shadow-sm focus-within:border-primary",
           className,
         )}
       >
