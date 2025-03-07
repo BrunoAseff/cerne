@@ -1,6 +1,7 @@
 "use client";
 
 import AlternativesSection from "./sections/AlternativesSection";
+import FooterSection from "./sections/FooterSection";
 import HeaderSection from "./sections/HeaderSection";
 import TemplateSection from "./sections/TemplateSection";
 
@@ -10,6 +11,7 @@ export default function Form() {
       <HeaderSection />
       <AlternativesSection />
       <TemplateSection />
+      <FooterSection />
     </form>
   );
 }
