@@ -30,40 +30,39 @@ const Toolbar = ({ editor }: { editor: Editor }) => (
   </div>
 );
 
-export const MinimalTiptapOne = React.forwardRef<
-  HTMLDivElement,
-  MinimalTiptapProps
->(({ value, onChange, className, editorContentClassName, ...props }, ref) => {
-  const editor = useMinimalTiptapEditor({
-    value,
-    onUpdate: onChange,
-    ...props,
-  });
+export const TitleInput = React.forwardRef<HTMLDivElement, MinimalTiptapProps>(
+  ({ value, onChange, className, editorContentClassName, ...props }, ref) => {
+    const editor = useMinimalTiptapEditor({
+      value,
+      onUpdate: onChange,
+      ...props,
+    });
 
-  if (!editor) {
-    return null;
-  }
+    if (!editor) {
+      return null;
+    }
 
-  return (
-    <MeasuredContainer
-      as="div"
-      name="editor"
-      ref={ref}
-      className={cn(
-        "flex h-auto min-h-28 max-w-[50%] flex-col rounded-md border border-input shadow-sm focus-within:border-primary",
-        className,
-      )}
-    >
-      <EditorContent
-        editor={editor}
-        className={cn("minimal-tiptap-editor", editorContentClassName)}
-      />
-      <Toolbar editor={editor} />
-      <LinkBubbleMenu editor={editor} />
-    </MeasuredContainer>
-  );
-});
+    return (
+      <MeasuredContainer
+        as="div"
+        name="editor"
+        ref={ref}
+        className={cn(
+          "flex h-auto min-h-28 max-w-[50%] flex-col rounded-md border border-input shadow-sm focus-within:border-primary",
+          className,
+        )}
+      >
+        <EditorContent
+          editor={editor}
+          className={cn("minimal-tiptap-editor", editorContentClassName)}
+        />
+        <Toolbar editor={editor} />
+        <LinkBubbleMenu editor={editor} />
+      </MeasuredContainer>
+    );
+  },
+);
 
-MinimalTiptapOne.displayName = "MinimalTiptapOne";
+TitleInput.displayName = "TitleInput";
 
-export default MinimalTiptapOne;
+export default TitleInput;
