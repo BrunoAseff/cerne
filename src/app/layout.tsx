@@ -16,7 +16,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="bg-[#E8EAEC]">
+      <body className="bg-background">
         <TooltipProvider delayDuration={0}>
           <Nav />
           {children}
