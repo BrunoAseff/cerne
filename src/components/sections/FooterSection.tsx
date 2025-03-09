@@ -2,7 +2,7 @@ import FormSection from "../FormSection";
 
 export default function FooterSection() {
   return (
-    <FormSection title="Rodapé">
+    <FormSection id="footer-section" title="Rodapé">
       <div></div>
     </FormSection>
   );
