@@ -2,7 +2,7 @@ import FormSection from "../FormSection";
 
 export default function AlternativesSection() {
   return (
-    <FormSection title="Alternativas">
+    <FormSection id="alternatives-section" title="Alternativas">
       <div></div>
     </FormSection>
   );

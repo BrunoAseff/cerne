@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "@/styles/globals.css";
 
@@ -15,12 +16,23 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className={`${GeistSans.variable}`}
+    >
       <body className="bg-background">
-        <TooltipProvider delayDuration={0}>
-          <Nav />
-          {children}
-        </TooltipProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider delayDuration={0}>
+            <Nav />
+            {children}
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

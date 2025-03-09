@@ -22,7 +22,7 @@ export default function HeaderSection() {
   };
 
   return (
-    <FormSection title="Cabeçalho">
+    <FormSection id="header-section" title="Cabeçalho">
       <div className="flex w-full flex-col gap-12">
         <div className="rounded-xl bg-muted p-3 pt-2">
           <div className="mx-3 mb-3 flex w-full items-center justify-between text-sm">

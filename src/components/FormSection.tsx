@@ -1,15 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useId } from "react";
 import { ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useFormSections } from "@/hooks/use-section";
 
 interface FormSectionProps {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
   className?: string;
+  id?: string;
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
@@ -17,14 +19,29 @@ const FormSection: React.FC<FormSectionProps> = ({
   children,
   defaultOpen = true,
   className,
+  id: customId,
 }) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const generatedId = useId();
+  const id = customId ?? generatedId;
+
+  const { registerSection, updateSectionState, sectionStates } =
+    useFormSections();
+
+  useEffect(() => {
+    registerSection(id, defaultOpen);
+  }, [id, defaultOpen, registerSection]);
+
+  const isOpen = sectionStates[id] ?? defaultOpen;
+
+  const toggleSection = () => {
+    updateSectionState(id, !isOpen);
+  };
 
   return (
     <div className={cn("w-full", className)}>
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleSection}
         className="flex w-full items-center justify-between rounded-xl p-4 transition-all duration-200 hover:bg-accent"
       >
         <span className="font-medium">{title}</span>
