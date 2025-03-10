@@ -10,12 +10,12 @@ export default function FormToolbar() {
   const { toggleAllSections, allCollapsed } = useFormSections();
 
   return (
-    <ul className="flex w-full items-center justify-end gap-2">
+    <ul className="hidden w-full items-center justify-start gap-2 md:flex md:justify-end">
       <li>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
-              className="mr-3"
+              className="mr-0 md:mr-3"
               variant="ghost"
               size="icon"
               onClick={toggleAllSections}

@@ -10,11 +10,11 @@ import { Button } from "./ui/button";
 
 export default function PreviewToolbar() {
   return (
-    <ul className="flex w-full items-center justify-end gap-2">
+    <ul className="mb-4 flex w-full items-center justify-evenly gap-2 md:mb-0 md:justify-end">
       <li>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button className="mr-3" variant="ghost" size="icon">
+            <Button className="mr-0 md:mr-3" variant="ghost" size="icon">
               <ZoomIn size={22} />
             </Button>
           </TooltipTrigger>
