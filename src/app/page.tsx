@@ -6,7 +6,7 @@ import PreviewToolbar from "@/components/PreviewToolbar";
 export default function HomePage() {
   return (
     <main className="mx-16 mb-12 mt-3 flex flex-col justify-start">
-      <section className="mb-2 mt-1 grid w-full grid-cols-2">
+      <section className="mb-2 mt-1 grid w-full grid-cols-2 rounded-xl">
         <FormToolbar />
         <PreviewToolbar />
       </section>

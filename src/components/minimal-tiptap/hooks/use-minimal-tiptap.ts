@@ -198,6 +198,7 @@ export const useMinimalTiptapEditor = ({
 
   const editor = useEditor({
     extensions: createExtensions(placeholder),
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         autocomplete: "off",
