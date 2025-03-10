@@ -1,10 +1,20 @@
 "use client";
 
-import React, { useEffect, useId } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import { useFormSections } from "@/hooks/use-section";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerFooter,
+} from "@/components/ui/drawer";
 
 interface FormSectionProps {
   title: string;
@@ -23,6 +33,8 @@ const FormSection: React.FC<FormSectionProps> = ({
 }) => {
   const generatedId = useId();
   const id = customId ?? generatedId;
+  const isMobile = useIsMobile();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { registerSection, updateSectionState, sectionStates } =
     useFormSections();
@@ -33,9 +45,47 @@ const FormSection: React.FC<FormSectionProps> = ({
 
   const isOpen = sectionStates[id] ?? defaultOpen;
 
-  const toggleSection = () => {
-    updateSectionState(id, !isOpen);
+  const toggleSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (isMobile) {
+      setDrawerOpen(true);
+    } else {
+      updateSectionState(id, !isOpen);
+    }
   };
+
+  if (isMobile) {
+    return (
+      <div className={cn("w-full", className)}>
+        <Button
+          variant="ghost"
+          onClick={toggleSection}
+          className="flex w-full items-center justify-center"
+          type="button"
+        >
+          <span className="font-medium">{title}</span>
+        </Button>
+
+        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle>{title}</DrawerTitle>
+            </DrawerHeader>
+            <div className="px-4 py-2">{children}</div>
+            <DrawerFooter>
+              <DrawerClose asChild>
+                <Button variant="ghost" className="w-full" type="button">
+                  Fechar
+                </Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("w-full", className)}>
