@@ -40,12 +40,12 @@ export default function HeaderSection() {
               <TooltipContent>Editar nome dos campos</TooltipContent>
             </Tooltip>
           </div>
-          <div className="grid w-full grid-cols-4 flex-col items-center justify-evenly gap-3">
+          <div className="grid w-full grid-cols-2 flex-col items-center justify-evenly gap-3 md:grid-cols-4">
             {Object.entries(fields).map(([key, field]) => (
               <Label
                 key={field.id}
                 htmlFor={field.id}
-                className="flex w-fit cursor-pointer items-center space-x-2 rounded-xl px-6 py-4 transition-all duration-200 hover:bg-background"
+                className="flex w-fit cursor-pointer items-center space-x-2 rounded-xl px-4 py-3 transition-all duration-200 hover:bg-background md:px-6 md:py-4"
               >
                 <Checkbox
                   id={field.id}
@@ -61,7 +61,7 @@ export default function HeaderSection() {
             ))}
           </div>
         </div>
-        <div className="grid w-full grid-cols-2 gap-4">
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
           <div className="flex flex-col">
             <Label className="mb-2">Título da prova</Label>
             <TitleInput
