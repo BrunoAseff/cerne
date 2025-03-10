@@ -63,10 +63,9 @@ const FormSection: React.FC<FormSectionProps> = ({
           variant="ghost"
           onClick={toggleSection}
           className="flex w-full justify-between"
-          type="button" // Explicitly set button type to prevent form submission
+          type="button"
         >
           <span className="font-medium">{title}</span>
-          <ChevronLeft className="h-5 w-5" />
         </Button>
 
         <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
