@@ -10,7 +10,7 @@ export default function HomePage() {
         <FormToolbar />
         <PreviewToolbar />
       </section>
-      <article className="flex justify-center gap-6">
+      <article className="flex flex-col items-center justify-center gap-6 md:flex-row md:items-start">
         <Form />
         <Preview />
       </article>

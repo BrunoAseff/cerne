@@ -7,7 +7,7 @@ import TemplateSection from "./sections/TemplateSection";
 
 export default function Form() {
   return (
-    <form className="flex w-[50%] flex-col">
+    <form className="grid w-full grid-cols-2 flex-col gap-4 md:flex md:w-[50%] md:gap-0">
       <HeaderSection />
       <AlternativesSection />
       <TemplateSection />

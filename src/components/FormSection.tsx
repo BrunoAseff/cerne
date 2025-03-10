@@ -62,7 +62,7 @@ const FormSection: React.FC<FormSectionProps> = ({
         <Button
           variant="ghost"
           onClick={toggleSection}
-          className="flex w-full justify-between"
+          className="flex w-full items-center justify-center"
           type="button"
         >
           <span className="font-medium">{title}</span>
