@@ -19,6 +19,7 @@ type HeaderFields = {
 
 type HeaderStore = {
   title: string;
+  titleLength: number;
   fields: HeaderFields;
   setTitle: (title: string) => void;
   toggleField: (fieldId: keyof HeaderFields) => void;
@@ -45,8 +46,15 @@ const defaultFields: HeaderFields = {
 
 export const useHeader = create<HeaderStore>((set) => ({
   title: "",
+  titleLength: 0,
   fields: defaultFields,
-  setTitle: (title) => set({ title }),
+  setTitle: (title) => {
+    const trimmedTitle = title.slice(0, 30);
+    set({
+      title: trimmedTitle,
+      titleLength: trimmedTitle.length,
+    });
+  },
   toggleField: (fieldId) =>
     set((state) => ({
       fields: {
