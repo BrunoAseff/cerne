@@ -6,7 +6,6 @@ import type { UseMinimalTiptapEditorProps } from "@/components/minimal-tiptap/ho
 import { EditorContent } from "@tiptap/react";
 import { cn } from "@/lib/utils";
 import { SectionTwo } from "@/components/minimal-tiptap/components/section/two";
-import { LinkBubbleMenu } from "@/components/minimal-tiptap/components/bubble-menu/link-bubble-menu";
 import { useMinimalTiptapEditor } from "@/components/minimal-tiptap/hooks/use-minimal-tiptap";
 import { MeasuredContainer } from "../minimal-tiptap/components/measured-container";
 
@@ -57,7 +56,6 @@ export const TitleInput = React.forwardRef<HTMLDivElement, MinimalTiptapProps>(
           className={cn("minimal-tiptap-editor", editorContentClassName)}
         />
         <Toolbar editor={editor} />
-        <LinkBubbleMenu editor={editor} />
       </MeasuredContainer>
     );
   },
