@@ -69,7 +69,7 @@ const FormSection: React.FC<FormSectionProps> = ({
         </Button>
 
         <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-          <DrawerContent>
+          <DrawerContent aria-describedby={`${id}-description`}>
             <DrawerHeader>
               <DrawerTitle>{title}</DrawerTitle>
             </DrawerHeader>

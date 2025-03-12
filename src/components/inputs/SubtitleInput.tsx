@@ -5,9 +5,9 @@ import type { Content, Editor } from "@tiptap/react";
 import type { UseMinimalTiptapEditorProps } from "@/components/minimal-tiptap/hooks/use-minimal-tiptap";
 import { EditorContent } from "@tiptap/react";
 import { cn } from "@/lib/utils";
-import { SectionTwo } from "@/components/minimal-tiptap/components/section/two";
 import { useMinimalTiptapEditor } from "@/components/minimal-tiptap/hooks/use-minimal-tiptap";
 import { MeasuredContainer } from "../minimal-tiptap/components/measured-container";
+import SectionSix from "../minimal-tiptap/components/section/six";
 
 export interface MinimalTiptapProps
   extends Omit<UseMinimalTiptapEditorProps, "onUpdate"> {
@@ -20,7 +20,7 @@ export interface MinimalTiptapProps
 const Toolbar = ({ editor }: { editor: Editor }) => (
   <div className="shrink-0 overflow-x-auto border-t border-border p-2">
     <div className="flex w-max items-center gap-px">
-      <SectionTwo
+      <SectionSix
         editor={editor}
         activeActions={["bold", "italic", "underline", "strikethrough"]}
         mainActionCount={5}
@@ -29,38 +29,39 @@ const Toolbar = ({ editor }: { editor: Editor }) => (
   </div>
 );
 
-export const TitleInput = React.forwardRef<HTMLDivElement, MinimalTiptapProps>(
-  ({ value, onChange, className, editorContentClassName, ...props }, ref) => {
-    const editor = useMinimalTiptapEditor({
-      value,
-      onUpdate: onChange,
-      ...props,
-    });
+export const DescriptionInput = React.forwardRef<
+  HTMLDivElement,
+  MinimalTiptapProps
+>(({ value, onChange, className, editorContentClassName, ...props }, ref) => {
+  const editor = useMinimalTiptapEditor({
+    value,
+    onUpdate: onChange,
+    ...props,
+  });
 
-    if (!editor) {
-      return null;
-    }
+  if (!editor) {
+    return null;
+  }
 
-    return (
-      <MeasuredContainer
-        as="div"
-        name="editor"
-        ref={ref}
-        className={cn(
-          "flex h-auto min-h-28 w-full flex-col rounded-md border border-input shadow-sm focus-within:border-primary",
-          className,
-        )}
-      >
-        <EditorContent
-          editor={editor}
-          className={cn("minimal-tiptap-editor", editorContentClassName)}
-        />
-        <Toolbar editor={editor} />
-      </MeasuredContainer>
-    );
-  },
-);
+  return (
+    <MeasuredContainer
+      as="div"
+      name="editor"
+      ref={ref}
+      className={cn(
+        "flex h-auto min-h-28 w-full flex-col rounded-md border border-input shadow-sm focus-within:border-primary",
+        className,
+      )}
+    >
+      <EditorContent
+        editor={editor}
+        className={cn("minimal-tiptap-editor", editorContentClassName)}
+      />
+      <Toolbar editor={editor} />
+    </MeasuredContainer>
+  );
+});
 
-TitleInput.displayName = "TitleInput";
+DescriptionInput.displayName = "DescriptionInput";
 
-export default TitleInput;
+export default DescriptionInput;

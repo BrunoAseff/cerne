@@ -13,7 +13,6 @@ import {
   UnderlineIcon,
 } from "@radix-ui/react-icons";
 import { ToolbarSection } from "../toolbar-section";
-import { ImageEditDialog } from "../image/image-edit-dialog";
 
 type TextStyleAction =
   | "bold"
@@ -97,13 +96,13 @@ const formatActions: TextStyle[] = [
   },
 ];
 
-interface SectionTwoProps extends VariantProps<typeof toggleVariants> {
+interface SectionSixProps extends VariantProps<typeof toggleVariants> {
   editor: Editor;
   activeActions?: TextStyleAction[];
   mainActionCount?: number;
 }
 
-export const SectionTwo: React.FC<SectionTwoProps> = ({
+export const SectionSix: React.FC<SectionSixProps> = ({
   editor,
   activeActions = formatActions.map((action) => action.value),
   mainActionCount = 2,
@@ -124,11 +123,10 @@ export const SectionTwo: React.FC<SectionTwoProps> = ({
         size={size}
         variant={variant}
       />
-      <ImageEditDialog editor={editor} size={size} variant={variant} />
     </>
   );
 };
 
-SectionTwo.displayName = "SectionTwo";
+SectionSix.displayName = "SectionSix";
 
-export default SectionTwo;
+export default SectionSix;
