@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { SectionTwo } from "@/components/minimal-tiptap/components/section/two";
 import { useMinimalTiptapEditor } from "@/components/minimal-tiptap/hooks/use-minimal-tiptap";
 import { MeasuredContainer } from "../minimal-tiptap/components/measured-container";
+import { Badge } from "../ui/badge";
 
 export interface MinimalTiptapProps
   extends Omit<UseMinimalTiptapEditorProps, "onUpdate"> {
@@ -18,7 +19,7 @@ export interface MinimalTiptapProps
 }
 
 const Toolbar = ({ editor }: { editor: Editor }) => (
-  <div className="shrink-0 overflow-x-auto border-t border-border p-2">
+  <div className="relative shrink-0 overflow-x-auto border-t border-border p-2">
     <div className="flex w-max items-center gap-px">
       <SectionTwo
         editor={editor}
@@ -26,6 +27,7 @@ const Toolbar = ({ editor }: { editor: Editor }) => (
         mainActionCount={5}
       />
     </div>
+    <Badge className="absolute bottom-2 right-5">123/ 500</Badge>
   </div>
 );
 
