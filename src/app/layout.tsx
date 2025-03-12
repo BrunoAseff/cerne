@@ -2,7 +2,7 @@ import Nav from "@/components/Nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "@/styles/globals.css";
-import { Comfortaa } from "next/font/google";
+import { Poppins } from "next/font/google";
 
 import { type Metadata } from "next";
 
@@ -12,13 +12,16 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const dosis = Comfortaa({ subsets: ["latin"], weight: "600" });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600"],
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html suppressHydrationWarning lang="en" className={`${dosis.className}`}>
+    <html suppressHydrationWarning lang="en" className={`${poppins.className}`}>
       <body className="bg-background">
         <ThemeProvider
           attribute="class"
