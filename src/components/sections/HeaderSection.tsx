@@ -66,7 +66,6 @@ export default function HeaderSection() {
           <div className="flex flex-col">
             <Label className="mb-2">Título da prova</Label>
             <TitleInput
-              throttleDelay={1000}
               className={cn("w-full rounded-xl bg-muted")}
               editorContentClassName="overflow-auto h-full"
               value={value}
@@ -81,7 +80,6 @@ export default function HeaderSection() {
           <div className="flex flex-col">
             <Label className="mb-2">Subtítulo da prova</Label>
             <SubtitleInput
-              throttleDelay={1000}
               className={cn("w-full rounded-xl bg-muted")}
               editorContentClassName="overflow-auto h-full"
               value={value}
