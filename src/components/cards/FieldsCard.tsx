@@ -10,7 +10,7 @@ export default function FieldsCard() {
 
   return (
     <div className="flex-1 rounded-xl border-2 border-border bg-muted p-3 pt-2">
-      <div className="mx-3 mb-3 flex w-full items-center justify-between text-sm">
+      <div className="mx-3 mb-6 flex w-full items-center justify-between text-sm">
         <div className="flex items-center justify-start gap-1">
           <FilePenLine size={16} />
           <h1>Campos</h1>
@@ -25,7 +25,7 @@ export default function FieldsCard() {
           <TooltipContent>Editar nome dos campos</TooltipContent>
         </Tooltip>
       </div>
-      <div className="grid w-full grid-cols-2 flex-col items-center justify-evenly gap-3 md:grid-cols-4">
+      <div className="mt-auto grid w-full grid-cols-2 flex-col items-center justify-evenly gap-3 md:grid-cols-4">
         {Object.entries(fields).map(([key, field]) => (
           <Label
             key={field.id}
