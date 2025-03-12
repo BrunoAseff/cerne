@@ -11,15 +11,71 @@ import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import SubtitleInput from "../inputs/SubtitleInput";
 
-export default function HeaderSection() {
+interface TextNode {
+  type: string;
+  text?: string;
+  content?: TextNode[];
+}
+
+export default function HeaderSection(): JSX.Element {
   const [value, setValue] = useState<Content>("");
   const { setTitle, fields, toggleField } = useHeader();
 
-  const handleTitleChange = (newValue: Content) => {
+  const extractText = (nodes: TextNode[]): string => {
+    return nodes
+      .map((node) => {
+        if (node.type === "text") {
+          return node.text ?? "";
+        } else if (node.content) {
+          return extractText(node.content);
+        }
+        return "";
+      })
+      .join("");
+  };
+
+  const handleTitleChange = (newValue: Content): void => {
     setValue(newValue);
+
+    let textContent = "";
     if (typeof newValue === "string") {
-      setTitle(newValue);
+      textContent = newValue;
+    } else if (
+      newValue &&
+      typeof newValue === "object" &&
+      "content" in newValue
+    ) {
+      const jsonContent = newValue;
+
+      if (Array.isArray(jsonContent.content)) {
+        textContent = extractText(jsonContent.content as TextNode[]);
+      }
     }
+
+    const limitedText = textContent.slice(0, 30);
+
+    if (limitedText !== textContent) {
+      if (typeof newValue === "object" && "content" in newValue!) {
+        setValue({
+          type: "doc",
+          content: [
+            {
+              type: "paragraph",
+              content: [
+                {
+                  type: "text",
+                  text: limitedText,
+                },
+              ],
+            },
+          ],
+        } as Content);
+      } else {
+        setValue(limitedText);
+      }
+    }
+
+    setTitle(limitedText);
   };
 
   return (
