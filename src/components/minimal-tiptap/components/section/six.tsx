@@ -13,7 +13,6 @@ import {
   UnderlineIcon,
 } from "@radix-ui/react-icons";
 import { ToolbarSection } from "../toolbar-section";
-import { ImageEditDialog } from "../image/image-edit-dialog";
 
 type TextStyleAction =
   | "bold"
