@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "@/components/minimal-tiptap/styles/index.css";
 
 import type { Content, Editor } from "@tiptap/react";
@@ -37,7 +37,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ editor, characterCount }) => {
     if (characterCount <= 15) {
       return "text-primary bg-transparent shadow-transparent";
     } else if (characterCount <= 29) {
-      return "text-warning bg-warning/10";
+      return "text-warning bg-warning/10 border-warning";
     } else {
       return "text-destructive bg-destructive/10 border-destructive";
     }
@@ -54,9 +54,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ editor, characterCount }) => {
       </div>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Badge
-            className={`hover:none absolute bottom-3 right-3 ${getColorClasses()}`}
-          >
+          <Badge className={`absolute bottom-3 right-3 ${getColorClasses()}`}>
             {characterCount}/{MAX_CHARS}
           </Badge>
         </TooltipTrigger>
@@ -74,7 +72,8 @@ export const SubtitleInput = React.forwardRef<
   HTMLDivElement,
   MinimalTiptapProps
 >(({ value, onChange, className, editorContentClassName, ...props }, ref) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const containerRef = useRef<HTMLElement | null>(null);
+  const [isActive, setIsActive] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);
   const [editorInstance, setEditorInstance] = useState<Editor | null>(null);
 
@@ -137,17 +136,41 @@ export const SubtitleInput = React.forwardRef<
   useEffect(() => {
     if (!editorInstance) return;
 
-    const handleFocus = (): void => setIsFocused(true);
-    const handleBlur = (): void => setIsFocused(false);
+    const handleFocus = () => setIsActive(true);
 
     editorInstance.on("focus", handleFocus);
-    editorInstance.on("blur", handleBlur);
 
     return () => {
       editorInstance.off("focus", handleFocus);
-      editorInstance.off("blur", handleBlur);
     };
   }, [editorInstance]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (containerRef.current && !containerRef.current.contains(target)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const setRefs = (element: HTMLElement | null) => {
+    if (ref) {
+      if (typeof ref === "function") {
+        ref(element as HTMLDivElement);
+      } else {
+        ref.current = element as HTMLDivElement;
+      }
+    }
+
+    containerRef.current = element;
+  };
 
   if (!editor) {
     return null;
@@ -157,7 +180,7 @@ export const SubtitleInput = React.forwardRef<
     <MeasuredContainer
       as="div"
       name="editor"
-      ref={ref}
+      ref={setRefs}
       className={cn(
         "flex h-auto min-h-28 w-full flex-col rounded-md border border-input shadow-sm focus-within:border-primary",
         className,
@@ -167,7 +190,7 @@ export const SubtitleInput = React.forwardRef<
         editor={editor}
         className={cn("minimal-tiptap-editor", editorContentClassName)}
       />
-      {isFocused && <Toolbar editor={editor} characterCount={characterCount} />}
+      {isActive && <Toolbar editor={editor} characterCount={characterCount} />}
     </MeasuredContainer>
   );
 });
