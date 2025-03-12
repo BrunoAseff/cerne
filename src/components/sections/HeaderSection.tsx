@@ -52,7 +52,7 @@ export default function HeaderSection(): JSX.Element {
       }
     }
 
-    const limitedText = textContent.slice(0, 30);
+    const limitedText = textContent.slice(0, 100);
 
     if (limitedText !== textContent) {
       if (typeof newValue === "object" && "content" in newValue!) {
@@ -81,7 +81,7 @@ export default function HeaderSection(): JSX.Element {
   return (
     <FormSection id="header-section" title="Cabeçalho">
       <div className="flex w-full flex-col gap-12">
-        <div className="rounded-xl bg-muted p-3 pt-2">
+        <div className="w-[65%] rounded-xl bg-muted p-3 pt-2">
           <div className="mx-3 mb-3 flex w-full items-center justify-between text-sm">
             <div className="flex items-center justify-start gap-1">
               <FilePenLine size={16} />

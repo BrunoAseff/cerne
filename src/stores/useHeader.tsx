@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import truncate from "html-truncate";
 
 type HeaderField = {
   id: string;
@@ -44,17 +45,26 @@ const defaultFields: HeaderFields = {
   score: { id: "score", label: "Nota", enabled: true },
 };
 
+function getVisibleTextLength(html: string): number {
+  if (typeof window === "undefined") return 0;
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  return div.textContent?.length ?? 0;
+}
+
 export const useHeader = create<HeaderStore>((set) => ({
   title: "",
   titleLength: 0,
   fields: defaultFields,
   setTitle: (title) => {
-    const trimmedTitle = title.slice(0, 30);
+    const trimmedTitle = truncate(title, 30, { ellipsis: "" });
+    const visibleLength = getVisibleTextLength(trimmedTitle);
     set({
       title: trimmedTitle,
-      titleLength: trimmedTitle.length,
+      titleLength: visibleLength,
     });
   },
+
   toggleField: (fieldId) =>
     set((state) => ({
       fields: {
