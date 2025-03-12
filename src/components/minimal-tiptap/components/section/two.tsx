@@ -13,6 +13,7 @@ import {
   UnderlineIcon,
 } from "@radix-ui/react-icons";
 import { ToolbarSection } from "../toolbar-section";
+import { ImageEditDialog } from "../image/image-edit-dialog";
 
 type TextStyleAction =
   | "bold"
@@ -20,7 +21,8 @@ type TextStyleAction =
   | "underline"
   | "strikethrough"
   | "code"
-  | "clearFormatting";
+  | "clearFormatting"
+  | "image";
 
 interface TextStyle extends FormatAction {
   value: TextStyleAction;
@@ -109,17 +111,21 @@ export const SectionTwo: React.FC<SectionTwoProps> = ({
   variant,
 }) => {
   return (
-    <ToolbarSection
-      editor={editor}
-      actions={formatActions}
-      activeActions={activeActions}
-      mainActionCount={mainActionCount}
-      dropdownIcon={<DotsHorizontalIcon className="size-5" />}
-      dropdownTooltip="More formatting"
-      dropdownClassName="w-8"
-      size={size}
-      variant={variant}
-    />
+    <>
+      {" "}
+      <ToolbarSection
+        editor={editor}
+        actions={formatActions}
+        activeActions={activeActions}
+        mainActionCount={mainActionCount}
+        dropdownIcon={<DotsHorizontalIcon className="size-5" />}
+        dropdownTooltip="More formatting"
+        dropdownClassName="w-8"
+        size={size}
+        variant={variant}
+      />
+      <ImageEditDialog editor={editor} size={size} variant={variant} />
+    </>
   );
 };
 
