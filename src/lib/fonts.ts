@@ -5,11 +5,12 @@ export const fonts = [
   { label: "Cambria", value: "cambria" },
   { label: "Georgia", value: "georgia" },
   { label: "Verdana", value: "verdana" },
+  { label: "Poppins", value: "poppins" },
 ];
 
-export const fontSizes = [
-  { label: "Pequeno", value: "text-sm" },
-  { label: "Normal", value: "text-base" },
-  { label: "Grande", value: "text-lg" },
-  { label: "Muito Grande", value: "text-xl" },
+export const fontScales = [
+  { label: "Pequeno (0.75x)", value: "0.75" },
+  { label: "Normal (1x)", value: "1" },
+  { label: "Grande (1.25x)", value: "1.25" },
+  { label: "Muito Grande (1.5x)", value: "1.5" },
 ];

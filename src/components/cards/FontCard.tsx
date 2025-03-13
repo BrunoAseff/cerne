@@ -10,10 +10,10 @@ import {
 import { Label } from "../ui/label";
 import { TypeOutline } from "lucide-react";
 import { useHeader } from "@/stores/useHeader";
-import { fonts, fontSizes } from "@/lib/fonts";
+import { fonts, fontScales } from "@/lib/fonts";
 
 export default function FontCard() {
-  const { font, setFont, fontSize, setFontSize } = useHeader();
+  const { font, setFont, fontScale, setFontScale } = useHeader();
 
   return (
     <div className="flex-2 rounded-xl border-2 border-border bg-muted p-3 pt-2">
@@ -44,14 +44,17 @@ export default function FontCard() {
         </div>
         <div className="flex flex-col items-start gap-1">
           <Label>Tamanho</Label>
-          <Select value={fontSize} onValueChange={setFontSize}>
+          <Select
+            value={fontScale.toString()}
+            onValueChange={(v) => setFontScale(parseFloat(v))}
+          >
             <SelectTrigger className="m-auto w-[180px]">
-              <SelectValue placeholder="Escolha o tamanho" />
+              <SelectValue placeholder="Escolha a escala" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Tamanho</SelectLabel>
-                {fontSizes.map((s) => (
+                <SelectLabel>Escala</SelectLabel>
+                {fontScales.map((s) => (
                   <SelectItem key={s.value} value={s.value}>
                     {s.label}
                   </SelectItem>

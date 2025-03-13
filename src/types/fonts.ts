@@ -6,3 +6,12 @@ export const fontMap: Record<string, string> = {
   georgia: "font-georgia",
   verdana: "font-verdana",
 };
+
+export const fontVariableMap: Record<string, string> = {
+  times: "--times-font",
+  arial: "--arial-font",
+  calibri: "--calibri-font",
+  cambria: "--cambria-font",
+  georgia: "--georgia-font",
+  verdana: "--verdana-font",
+};

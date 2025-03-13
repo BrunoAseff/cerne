@@ -4,6 +4,25 @@
 
 @layer base {
   :root {
+    --times-font: "Times New Roman", Times, serif;
+    --arial-font: Arial, Helvetica, sans-serif;
+    --calibri-font: Calibri, Candara, "Segoe UI", sans-serif;
+    --cambria-font: Cambria, Georgia, serif;
+    --georgia-font: Georgia, "Times New Roman", Times, serif;
+    --verdana-font: Verdana, Geneva, sans-serif;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    div {
+      font-family: inherit;
+    }
+
     --background: 210 10% 92%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;

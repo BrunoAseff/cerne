@@ -15,13 +15,14 @@ export const metadata: Metadata = {
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400"],
+  variable: "--font-poppins",
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html suppressHydrationWarning lang="en" className={`${poppins.className}`}>
+    <html suppressHydrationWarning lang="en" className={`${poppins.variable}`}>
       <body className="bg-background">
         <ThemeProvider
           attribute="class"
