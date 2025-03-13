@@ -24,6 +24,10 @@ type HeaderStore = {
   fields: HeaderFields;
   setTitle: (title: string) => void;
   toggleField: (fieldId: keyof HeaderFields) => void;
+  font: string;
+  setFont: (font: string) => void;
+  fontScale: number;
+  setFontScale: (scale: number) => void;
 };
 
 const defaultFields: HeaderFields = {
@@ -55,7 +59,11 @@ function getVisibleTextLength(html: string): number {
 export const useHeader = create<HeaderStore>((set) => ({
   title: "",
   titleLength: 0,
+  font: "arial",
+  setFont: (font) => set({ font }),
   fields: defaultFields,
+  fontScale: 1,
+  setFontScale: (fontScale) => set({ fontScale }),
   setTitle: (title) => {
     const trimmedTitle = truncate(title, 30, { ellipsis: "" });
     const visibleLength = getVisibleTextLength(trimmedTitle);

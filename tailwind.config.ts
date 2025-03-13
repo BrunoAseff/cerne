@@ -8,7 +8,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        sans: ["var(--font-poppins)", ...fontFamily.sans],
+        times: ['"Times New Roman"', "Times", "serif"],
+        arial: ["Arial", "Helvetica", "sans-serif"],
+        calibri: ["Calibri", "Candara", '"Segoe UI"', "sans-serif"],
+        cambria: ["Cambria", "Georgia", "serif"],
+        georgia: ["Georgia", '"Times New Roman"', "Times", "serif"],
+        verdana: ["Verdana", "Geneva", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

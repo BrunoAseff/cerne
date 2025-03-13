@@ -9,8 +9,12 @@ import {
 } from "@/components/ui/select";
 import { Label } from "../ui/label";
 import { TypeOutline } from "lucide-react";
+import { useHeader } from "@/stores/useHeader";
+import { fonts, fontScales } from "@/lib/fonts";
 
 export default function FontCard() {
+  const { font, setFont, fontScale, setFontScale } = useHeader();
+
   return (
     <div className="flex-2 rounded-xl border-2 border-border bg-muted p-3 pt-2">
       <div className="mx-3 mb-3 flex w-full items-center justify-start text-sm">
@@ -21,38 +25,40 @@ export default function FontCard() {
       </div>
       <div className="flex w-full flex-col items-center space-y-6">
         <div className="flex flex-col items-start gap-1">
-          <Select defaultValue="apple">
-            <Label>Fonte</Label>
-
+          <Label>Fonte</Label>
+          <Select value={font} onValueChange={setFont}>
             <SelectTrigger className="m-auto w-[180px]">
-              <SelectValue placeholder="Select a fruit" />
+              <SelectValue placeholder="Escolha a fonte" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Fonte</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                {fonts.map((f) => (
+                  <SelectItem key={f.value} value={f.value}>
+                    {f.label}
+                  </SelectItem>
+                ))}
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
         <div className="flex flex-col items-start gap-1">
           <Label>Tamanho</Label>
-          <Select defaultValue="banana">
+          <Select
+            value={fontScale.toString()}
+            onValueChange={(v) => setFontScale(parseFloat(v))}
+          >
             <SelectTrigger className="m-auto w-[180px]">
-              <SelectValue placeholder="Select a fruit" />
+              <SelectValue placeholder="Escolha a escala" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Tamanho</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectLabel>Escala</SelectLabel>
+                {fontScales.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>
+                    {s.label}
+                  </SelectItem>
+                ))}
               </SelectGroup>
             </SelectContent>
           </Select>
